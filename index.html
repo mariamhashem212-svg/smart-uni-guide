@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#8d79c7">
+  <title>UniMate AI | دليلك الجامعي الذكي</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="header">
+  <a class="brand" href="#home">
+    <img src="logo.jpeg" alt="شعار UniMate AI"
+         onerror="this.style.display='none'">
+
+    <span>UniMate <b>AI</b></span>
+  </a>
+
+  <button class="menu-toggle" id="menuToggle" aria-label="فتح القائمة">☰</button>
+
+  <nav id="navMenu">
+    <a href="#home">الرئيسية</a>
+    <a href="#departments">الأقسام</a>
+    <a href="#map">خريطة الكلية</a>
+    <a href="#student-affairs">شئون الطلاب</a>
+    <a href="#admissions">الطلاب الجدد</a>
+    <a href="#quiz">اختبر ميولك</a>
+    <a href="#about">عن المشروع</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <span class="eyebrow">دليلك الجامعي الذكي ✦</span>
+      <h1>رحلتك الجامعية تبدأ من <span>هنا</span></h1>
+      <p>
+        اكتشف أقسام كلية التربية النوعية بجامعة دمياط،
+        وتعرّف على الخدمات الجامعية، واستكشف المجال الأقرب لاهتماماتك
+        مع UniMate AI.
+      </p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#departments">اكتشف الأقسام</a>
+        <a class="btn secondary" href="#quiz">اختبر ميولك</a>
+      </div>
+      <div class="hero-note">دليلك للتعرّف على الكلية في مكان واحد</div>
+    </div>
+
+    <div class="hero-art" aria-label="رسم توضيحي للتعليم والتكنولوجيا">
+      <div class="orbit orbit-one"></div>
+      <div class="orbit orbit-two"></div>
+      <div class="art-card">
+        <span class="art-icon">🎓</span>
+        <h3>تعلم · اكتشف · انطلق</h3>
+        <p>مستقبلك يبدأ بخطوة</p>
+      </div>
+      <span class="bubble bubble-one">✦</span>
+      <span class="bubble bubble-two">AI</span>
+      <span class="bubble bubble-three">✧</span>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div><strong>7</strong><span>أقسام للتعرّف عليها</span></div>
+    <div><strong>1</strong><span>دليل جامعي تفاعلي</span></div>
+    <div><strong>5</strong><span>أسئلة لاكتشاف ميولك</span></div>
+  </section>
+
+  <section class="section" id="departments">
+    <div class="section-heading">
+      <span class="eyebrow">اكتشف شغفك</span>
+      <h2>أقسام الكلية</h2>
+      <p>اختار القسم لمعرفة نبذة عنه ومشاهدة الفيديو التعريفي عند إضافته.</p>
+    </div>
+    <div class="department-grid" id="departmentGrid"></div>
+
+    <article class="department-details" id="departmentDetails" hidden>
+      <button class="close-details" id="closeDetails">← العودة للأقسام</button>
+      <div id="departmentContent"></div>
+    </article>
+  </section>
+
+  <section class="section map-section" id="map">
+    <div class="section-heading">
+      <span class="eyebrow">اعرف طريقك</span>
+      <h2>موقع الكلية على الخريطة</h2>
+      <p>كلية التربية النوعية – الحي الأول، المجاورة الثانية، دمياط الجديدة، دمياط.</p>
+    </div>
+
+    <div class="map-card">
+      <div class="map-info">
+        <span class="map-pin">📍</span>
+        <h3>كلية التربية النوعية</h3>
+        <p>جامعة دمياط – دمياط الجديدة</p>
+        <a class="btn primary" target="_blank" rel="noopener"
+           href="https://www.google.com/maps/search/?api=1&query=كلية+التربية+النوعية+جامعة+دمياط+دمياط+الجديدة">
+          افتح الموقع في خرائط Google
+        </a>
+        <p class="small-note">
+          يُرجى مراجعة العلامة على الخريطة قبل التوجّه إلى الكلية.
+        </p>
+      </div>
+      <div class="map-frame">
+        <iframe
+          title="خريطة موقع كلية التربية النوعية بجامعة دمياط"
+          src="https://maps.google.com/maps?q=كلية%20التربية%20النوعية%20جامعة%20دمياط%20دمياط%20الجديدة&t=&z=15&ie=UTF8&iwloc=&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+
+    <div class="location-list">
+      <div class="location-item"><span>🗂️</span><div><b>شئون الطلاب</b><p>تحققي من مكان المكتب داخل الكلية.</p></div></div>
+      <div class="location-item"><span>💳</span><div><b>الخزنة</b><p>يُضاف الموقع بعد التأكد منه.</p></div></div>
+      <div class="location-item"><span>💻</span><div><b>وحدة IT</b><p>يُضاف الموقع بعد التأكد منه.</p></div></div>
+    </div>
+    <p class="small-note">مواقع المكاتب الداخلية غير محددة على الخريطة لحين التحقق منها رسميًا.</p>
+  </section>
+
+  <section class="section affairs-section" id="student-affairs">
+    <div class="section-heading">
+      <span class="eyebrow">خدمات تهمك</span>
+      <h2>دليل شئون الطلاب</h2>
+      <p>معلومات إرشادية لمساعدتك في معرفة الخدمات التي تحتاج إليها.</p>
+    </div>
+
+    <div class="info-grid">
+      <article class="info-card">
+        <span class="info-icon">🗂️</span>
+        <h3>ما دور شئون الطلاب؟</h3>
+        <p>تُعد شئون الطلاب جهة للاستفسار عن إجراءات القيد والملفات الطلابية والجداول والخدمات المرتبطة بالدراسة، وفق نظام الكلية.</p>
+      </article>
+      <article class="info-card">
+        <span class="info-icon">📄</span>
+        <h3>الأوراق المطلوبة</h3>
+        <p>تختلف المستندات حسب تعليمات القبول والعام الجامعي. راجع الإعلان الرسمي أو تواصل مع شئون الطلاب قبل تجهيز الملف.</p>
+      </article>
+      <article class="info-card">
+        <span class="info-icon">🧭</span>
+        <h3>خطوات الاستفسار</h3>
+        <p>تابع الإعلانات الرسمية، وتأكد من المواعيد والمستندات والرسوم من الجهة المختصة قبل اتخاذ أي إجراء.</p>
+      </article>
+    </div>
+
+    <div class="official-links">
+      <a class="btn primary" href="https://spe.du.edu.eg/Unit/Details/30/189" target="_blank" rel="noopener">الموقع الرسمي للكلية</a>
+      <a class="btn secondary" href="https://www.du.edu.eg/" target="_blank" rel="noopener">موقع جامعة دمياط</a>
+    </div>
+    <p class="small-note">المعلومات هنا إرشادية وليست بديلًا عن تعليمات الكلية الرسمية.</p>
+  </section>
+
+  <section class="section quiz-section" id="quiz">
+    <div class="section-heading">
+      <span class="eyebrow">اكتشف ما يناسبك</span>
+      <h2>اختبار اكتشاف الميول</h2>
+      <p>أجب عن خمسة أسئلة لتتعرف على المجالات الأقرب لاهتماماتك.</p>
+    </div>
+    
+<section class="section admissions-section" id="admissions">
+  <div class="section-heading">
+    <span class="eyebrow">خطوتك الأولى في الجامعة</span>
+    <h2>دليل الطلاب الجدد</h2>
+    <p>
+      معلومات استرشادية تساعدك على الاستعداد للتقديم،
+      مع الرجوع دائمًا إلى تعليمات الكلية الرسمية.
+    </p>
+  </div>
+
+  <div class="admissions-grid">
+
+    <article class="info-card">
+      <span class="info-icon">📋</span>
+      <h3>قائمة تجهيز الأوراق</h3>
+      <p>
+        القائمة التالية مبدئية للتجهيز فقط، وليست إعلانًا
+        رسميًا بالأوراق المطلوبة للعام الجامعي الحالي.
+      </p>
+
+      <ul class="document-list">
+        <li>أصل شهادة الثانوية العامة أو ما يعادلها.</li>
+        <li>بطاقة الترشيح النهائية من موقع التنسيق.</li>
+        <li>شهادة ميلاد حديثة.</li>
+        <li>صور شخصية حديثة وفق المقاس والعدد المطلوبين.</li>
+        <li>صورة بطاقة الرقم القومي للطالب، إذا طُلبت.</li>
+        <li>صورة بطاقة ولي الأمر، إذا طُلبت.</li>
+        <li>مستندات التجنيد المطلوبة للطلاب الذكور حسب الحالة.</li>
+        <li>أي نماذج أو مستندات إضافية يحددها إعلان الكلية.</li>
+      </ul>
+
+      <p class="small-note">
+        لا تعتمدي على هذه القائمة وحدها؛ فقد تختلف الأوراق
+        والأعداد والمواعيد من عام إلى آخر.
+      </p>
+
+      <a
+        class="btn primary"
+        href="https://spe.du.edu.eg/Unit/Details/13/79"
+        target="_blank"
+        rel="noopener"
+      >
+        تعليمات وخدمات الطلاب الرسمية
+      </a>
+    </article>
+
+    <article class="info-card">
+      <span class="info-icon">📝</span>
+      <h3>قبل تسليم الملف</h3>
+      <ul class="document-list">
+        <li>تأكدي من ترشيحك للكلية وصحة بياناتك.</li>
+        <li>راجعي إعلان الطلاب المستجدين للعام الجامعي الحالي.</li>
+        <li>تأكدي من اختبارات القدرات إذا كانت مطلوبة لتخصصك.</li>
+        <li>اسألي شئون الطلاب عن الرسوم والمواعيد ومكان التسليم.</li>
+        <li>احتفظي بنسخة من المستندات وإيصالات السداد.</li>
+      </ul>
+
+      <a
+        class="btn secondary"
+        href="https://spe.du.edu.eg/"
+        target="_blank"
+        rel="noopener"
+      >
+        زيارة موقع الكلية
+      </a>
+    </article>
+
+    <article class="info-card">
+      <span class="info-icon">✉️</span>
+      <h3>التواصل والبريد الجامعي</h3>
+      <p>
+        البريد المنشور للتواصل مع إدارة كلية التربية النوعية:
+      </p>
+
+      <a class="email-link" href="mailto:spedean@du.edu.eg">
+        spedean@du.edu.eg
+      </a>
+
+      <p>
+        للاستفسار عن إنشاء البريد الإلكتروني الجامعي،
+        راجعي خدمات الطلاب أو تواصلي مع الجهة المختصة بالجامعة.
+      </p>
+
+      <a
+        class="btn primary"
+        href="https://www.du.edu.eg/"
+        target="_blank"
+        rel="noopener"
+      >
+        موقع جامعة دمياط
+      </a>
+
+      <a
+        class="btn secondary"
+        href="https://spe.du.edu.eg/Unit/Details/13/79"
+        target="_blank"
+        rel="noopener"
+      >
+        خطوات وخدمات الطلاب
+      </a>
+    </article>
+
+  </div>
+</section>
+
+    <div class="quiz-card" id="quizCard">
+      <div class="progress-top">
+        <span id="questionCount">السؤال 1 من 5</span>
+        <span id="progressPercent">20%</span>
+      </div>
+      <div class="progress-track"><div id="progressBar"></div></div>
+      <div id="questionArea"></div>
+      <div class="quiz-actions">
+        <button class="btn secondary" id="previousQuestion" type="button">السابق</button>
+        <button class="btn primary" id="nextQuestion" type="button">التالي</button>
+      </div>
+      <div id="quizResult" aria-live="polite"></div>
+    </div>
+    <p class="small-note">هذا الاختبار استرشادي للتعرّف على الميول فقط، ولا يحدد القبول أو التخصص الجامعي الرسمي.</p>
+  </section>
+
+  <section class="about-section" id="about">
+    <div class="about-mark">✦</div>
+    <div>
+      <span class="eyebrow">عن المشروع</span>
+      <h2>UniMate AI</h2>
+      <p>
+        مشروع طلابي يهدف إلى تقديم دليل تفاعلي يساعد الطلاب الجدد
+        على استكشاف أقسام الكلية والخدمات الأساسية من خلال محتوى رقمي
+        وفيديوهات تعريفية وأدوات استرشادية.
+      </p>
+      <p class="small-note">المشروع ليس موقعًا رسميًا تابعًا للجامعة.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <a class="brand footer-brand" href="#home">UniMate <b>AI</b></a>
+  <p>دليل طلابي تفاعلي · كلية التربية النوعية – جامعة دمياط</p>
+  <a href="#home">العودة إلى الأعلى ↑</a>
+  <small>© <span id="year"></span> UniMate AI</small>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

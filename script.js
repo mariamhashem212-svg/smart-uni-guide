@@ -1,4 +1,3 @@
-
 /* =========================================
    UniMate AI
    الأقسام + الفيديوهات + اختبار الميول
@@ -33,7 +32,7 @@ const departments = [
       "دعم فني ومساندة تقنية.",
       "مصمم وسائط متعددة ومحتوى تعليمي رقمي."
     ],
-video: "https://drive.google.com/uc?export=view&id=1cJV-uLAOugdFXcpI7Iv3ayJcN7YEL6EH"
+    video: "https://drive.google.com/uc?export=view&id=1cJV-uLAOugdFXcpI7Iv3ayJcN7YEL6EH"
   },
 
   {
@@ -61,7 +60,7 @@ video: "https://drive.google.com/uc?export=view&id=1cJV-uLAOugdFXcpI7Iv3ayJcN7YE
       "الدعم التقني والعمل في الشركات.",
       "العمل الحر عن بُعد وفق المهارات المطلوبة."
     ],
-video: "https://drive.google.com/uc?export=view&id=1zILndFALoWLL5Avo3vJ7KeCCj5g7RQ2e"
+    video: "https://drive.google.com/uc?export=view&id=1zILndFALoWLL5Avo3vJ7KeCCj5g7RQ2e"
   },
 
   {
@@ -263,7 +262,7 @@ function showDepartment(departmentId) {
       <h3>🎬 الفيديو التعريفي بالقسم</h3>
       <p>شاهدي الفيديو للتعرف على القسم ومجالاته.</p>
 
-      <video controls playsinline preload="metadata">
+      <video controls playsinline preload="metadata" crossorigin="anonymous">
         <source src="${department.video}" type="video/mp4">
         متصفحك لا يدعم تشغيل الفيديو.
       </video>
@@ -273,8 +272,7 @@ function showDepartment(departmentId) {
       </p>
 
       <p class="video-missing" hidden>
-        تعذر تشغيل الفيديو. تأكدي من وجود الملف في مجلد videos
-        وأن اسمه مطابق للمسار المكتوب في الكود.
+        تعذر تشغيل الفيديو. تأكدي من الاتصال بالإنترنت ومن صلاحيات رابط درايف.
       </p>
     </div>
 
@@ -652,3 +650,4 @@ if (yearElement) {
 /* 10. تشغيل الموقع */
 
 renderDepartments();
+

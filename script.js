@@ -33,7 +33,7 @@ const departments = [
       "دعم فني ومساندة تقنية.",
       "مصمم وسائط متعددة ومحتوى تعليمي رقمي."
     ],
-    video: "videos/computer-ar.mp4"
+video: "https://drive.google.com/uc?export=view&id=1cJV-uLAOugdFXcpI7Iv3ayJcN7YEL6EH"
   },
 
   {
@@ -61,7 +61,7 @@ const departments = [
       "الدعم التقني والعمل في الشركات.",
       "العمل الحر عن بُعد وفق المهارات المطلوبة."
     ],
-    video: "videos/computer-en.mp4"
+video: "https://drive.google.com/uc?export=view&id=1zILndFALoWLL5Avo3vJ7KeCCj5g7RQ2e"
   },
 
   {
@@ -90,7 +90,7 @@ const departments = [
       "منتج محتوى تعليمي رقمي.",
       "دعم وإدارة منصات التعلم LMS."
     ],
-    video: "videos/e-learning.mp4"
+    video: "https://drive.google.com/uc?export=view&id=1CWAAad46_57yRVnNSmDtA2zPD0ytbmjS"
   },
 
   {
@@ -119,7 +119,7 @@ const departments = [
       "تصميم الأزياء ومجالات النسيج.",
       "المشروعات الصغيرة والحرف اليدوية."
     ],
-    video: "videos/home-economics.mp4"
+    video: "https://drive.google.com/uc?export=view&id=1y2FmclpFONExOJpR8zKE26BNhRXudhF3"
   },
 
   {
@@ -148,7 +148,7 @@ const departments = [
       "مجالات الخزف والحلي والأعمال اليدوية.",
       "مراكز الفنون والإبداع وتنظيم المعارض."
     ],
-    video: "videos/art-education.mp4"
+    video: "https://drive.google.com/uc?export=view&id=1qB-DoxJSd6hghbh1Jpk1Yw1M1nY3BCFH"
   },
 
   {
@@ -177,7 +177,7 @@ const departments = [
       "العلاقات العامة وفق المؤهلات المطلوبة.",
       "مجالات المسرح والأنشطة الثقافية."
     ],
-    video: "videos/educational-media.mp4"
+    video: "https://drive.google.com/uc?export=view&id=1qt50YEjxI8yNTrlOj0McWlsXPjol10k3"
   },
 
   {
@@ -206,7 +206,7 @@ const departments = [
       "العزف والأداء ضمن الفرق الموسيقية.",
       "العمل في الأنشطة والمراكز الموسيقية."
     ],
-    video: "videos/music-education.mp4"
+    video: "https://drive.google.com/uc?export=view&id=1BXpQI3_NUVazIEfVP_LkMf"
   }
 ];
 

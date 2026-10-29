@@ -3,7 +3,7 @@
    الأقسام + الفيديوهات + اختبار الميول
 ========================================= */
 
-/* 1. بيانات الأقسام السبعة مع روابط التضمين المباشر */
+/* 1. بيانات الأقسام السبعة مع روابط التشغيل المباشر */
 
 const departments = [
   {
@@ -32,7 +32,7 @@ const departments = [
       "دعم فني ومساندة تقنية.",
       "مصمم وسائط متعددة ومحتوى تعليمي رقمي."
     ],
-    videoId: "1cJV-ulAOugdFxCpl7Iv3ayJcN7YEL6EH"
+    video: "https://www.googleapis.com/drive/v3/files/1cJV-ulAOugdFxCpl7Iv3ayJcN7YEL6EH?alt=media"
   },
 
   {
@@ -60,7 +60,7 @@ const departments = [
       "الدعم التقني والعمل في الشركات.",
       "العمل الحر عن بُعد وفق المهارات المطلوبة."
     ],
-    videoId: "1zILndFALoWLL5Avo3vJ7KeCCj5g7RQ2e"
+    video: "https://www.googleapis.com/drive/v3/files/1zILndFALoWLL5Avo3vJ7KeCCj5g7RQ2e?alt=media"
   },
 
   {
@@ -89,7 +89,7 @@ const departments = [
       "منتج محتوى تعليمي رقمي.",
       "دعم وإدارة منصات التعلم LMS."
     ],
-    videoId: "1CWAAad46_57yRVnNSmDtA2zPD0ytbmjS"
+    video: "https://www.googleapis.com/drive/v3/files/1CWAAad46_57yRVnNSmDtA2zPD0ytbmjS?alt=media"
   },
 
   {
@@ -118,7 +118,7 @@ const departments = [
       "تصميم الأزياء ومجالات النسيج.",
       "المشروعات الصغيرة والحرف اليدوية."
     ],
-    videoId: "1y2FmclpFONExOJpR8zKE26BNhRXudhF3"
+    video: "https://www.googleapis.com/drive/v3/files/1y2FmclpFONExOJpR8zKE26BNhRXudhF3?alt=media"
   },
 
   {
@@ -147,7 +147,7 @@ const departments = [
       "مجالات الخزف والحلي والأعمال اليدوية.",
       "مراكز الفنون والإبداع وتنظيم المعارض."
     ],
-    videoId: "1qB-DoxJSd6hghbh1Jpk1Yw1M1nY3BCFH"
+    video: "https://www.googleapis.com/drive/v3/files/1qB-DoxJSd6hghbh1Jpk1Yw1M1nY3BCFH?alt=media"
   },
 
   {
@@ -176,7 +176,7 @@ const departments = [
       "العلاقات العامة وفق المؤهلات المطلوبة.",
       "مجالات المسرح والأنشطة الثقافية."
     ],
-    videoId: "1qt50YEjxI8yNTrlOj0McWlsXPjol10k3"
+    video: "https://www.googleapis.com/drive/v3/files/1qt50YEjxI8yNTrlOj0McWlsXPjol10k3?alt=media"
   },
 
   {
@@ -205,7 +205,7 @@ const departments = [
       "العزف والأداء ضمن الفرق الموسيقية.",
       "العمل في الأنشطة والمراكز الموسيقية."
     ],
-    videoId: "1BXpQI3_NUVazIEfVP_LkMf-vOCvqqG_c"
+    video: "https://www.googleapis.com/drive/v3/files/1BXpQI3_NUVazIEfVP_LkMf-vOCvqqG_c?alt=media"
   }
 ];
 
@@ -237,7 +237,7 @@ function renderDepartments() {
 }
 
 
-/* 3. إنشاء قوائم المعلومات والفيديو لكل قسم (باستخدام iframe لعرض درايف بسلاسة) */
+/* 3. إنشاء قوائم المعلومات والفيديو لكل قسم */
 
 function createList(items) {
   return `
@@ -262,17 +262,17 @@ function showDepartment(departmentId) {
       <h3>🎬 الفيديو التعريفي بالقسم</h3>
       <p>شاهدي الفيديو للتعرف على القسم ومجالاته.</p>
 
-      <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; background: #000; margin-bottom: 15px;">
-        <iframe 
-          src="https://drive.google.com/file/d/${department.videoId}/preview" 
-          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
-          allow="autoplay" 
-          allowfullscreen>
-        </iframe>
-      </div>
+      <video controls playsinline preload="metadata" crossorigin="anonymous">
+        <source src="${department.video}" type="video/mp4">
+        متصفحك لا يدعم تشغيل الفيديو.
+      </video>
 
       <p class="video-caption">
         فيديو تعريفي بقسم ${department.title}.
+      </p>
+
+      <p class="video-missing" hidden>
+        تعذر تشغيل الفيديو. تأكدي من الاتصال بالإنترنت ومن صلاحيات رابط درايف.
       </p>
     </div>
 
@@ -290,6 +290,13 @@ function showDepartment(departmentId) {
       ${createList(department.careers)}
     </div>
   `;
+
+  const video = departmentContent.querySelector("video");
+  const missingMessage = departmentContent.querySelector(".video-missing");
+
+  video.addEventListener("error", () => {
+    missingMessage.hidden = false;
+  });
 
   departmentDetails.hidden = false;
 
@@ -345,5 +352,302 @@ if (enableIntroSound && introVideo) {
         introMessage.textContent = "الصوت يعمل الآن 🎧";
       }
     } catch (error) {
-      introVideo.muted = true
+      introVideo.muted = true;
+
+      if (introMessage) {
+        introMessage.textContent =
+          "اضغطي على زر التشغيل داخل الفيديو، وتأكدي أن الملف موجود.";
+      }
+    }
+  });
+}
+
+
+/* 7. قائمة الموبايل */
+
+const menuToggle = document.getElementById("menuToggle");
+const navMenu = document.getElementById("navMenu");
+
+if (menuToggle && navMenu) {
+  menuToggle.addEventListener("click", () => {
+    const isOpen = navMenu.classList.toggle("open");
+
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+    menuToggle.textContent = isOpen ? "✕" : "☰";
+  });
+
+  navMenu.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      navMenu.classList.remove("open");
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.textContent = "☰";
+    });
+  });
+}
+
+
+/* 8. بيانات اختبار الميول */
+
+const questions = [
+  {
+    title: "ما النشاط الذي تستمتعين به أكثر؟",
+    answers: [
+      { text: "البرمجة وحل المشكلات", type: "computer" },
+      { text: "تصميم الدروس والمحتوى الرقمي", type: "elearning" },
+      { text: "الرسم والتصميم والأعمال الفنية", type: "art" },
+      { text: "الموسيقى والعزف", type: "music" },
+      { text: "التصوير والإعلام والتقديم", type: "media" },
+      { text: "التغذية والملابس وإدارة المنزل", type: "home" }
+    ]
+  },
+  {
+    title: "أي مشروع تختارين تنفيذه؟",
+    answers: [
+      { text: "موقع إلكتروني أو برنامج", type: "computer" },
+      { text: "درس إلكتروني تفاعلي", type: "elearning" },
+      { text: "لوحة أو تصميم فني", type: "art" },
+      { text: "مقطوعة موسيقية", type: "music" },
+      { text: "فيديو أو تقرير إعلامي", type: "media" },
+      { text: "مشروع في الغذاء أو النسيج", type: "home" }
+    ]
+  },
+  {
+    title: "أي مهارة تريدين تطويرها؟",
+    answers: [
+      { text: "البرمجة والتكنولوجيا", type: "computer" },
+      { text: "التعليم الإلكتروني", type: "elearning" },
+      { text: "الإبداع البصري", type: "art" },
+      { text: "الأداء الموسيقي", type: "music" },
+      { text: "التواصل والإنتاج الإعلامي", type: "media" },
+      { text: "التصميم والتغذية والتطبيقات المنزلية", type: "home" }
+    ]
+  },
+  {
+    title: "أي بيئة عمل تفضلين؟",
+    answers: [
+      { text: "شركة تقنية أو مجال البرمجة", type: "computer" },
+      { text: "منصة أو مؤسسة تعليمية رقمية", type: "elearning" },
+      { text: "استوديو تصميم أو ورشة فنية", type: "art" },
+      { text: "مركز أو نشاط موسيقي", type: "music" },
+      { text: "مؤسسة إعلامية أو فريق محتوى", type: "media" },
+      { text: "مشروعات الغذاء أو الملابس", type: "home" }
+    ]
+  },
+  {
+    title: "أي مادة تجذب اهتمامك أكثر؟",
+    answers: [
+      { text: "الحاسب والبرمجة", type: "computer" },
+      { text: "التكنولوجيا في التعليم", type: "elearning" },
+      { text: "الفنون والتصميم", type: "art" },
+      { text: "الموسيقى والإيقاع", type: "music" },
+      { text: "الإعلام والصحافة والمسرح", type: "media" },
+      { text: "التغذية والاقتصاد المنزلي", type: "home" }
+    ]
+  }
+];
+
+const questionArea = document.getElementById("questionArea");
+const questionCount = document.getElementById("questionCount");
+const progressPercent = document.getElementById("progressPercent");
+const progressBar = document.getElementById("progressBar");
+const previousQuestion = document.getElementById("previousQuestion");
+const nextQuestion = document.getElementById("nextQuestion");
+const quizResult = document.getElementById("quizResult");
+
+let currentQuestion = 0;
+let selectedAnswers = Array(questions.length).fill(null);
+
+const resultDepartments = {
+  computer: {
+    title: "إعداد معلم الحاسب الآلي",
+    description: "قد يناسبك استكشاف البرمجة والتكنولوجيا.",
+    ids: ["computer-ar", "computer-en"]
+  },
+  elearning: {
+    title: "أخصائي التعلم الإلكتروني",
+    description: "قد يناسبك تصميم المحتوى والتجارب التعليمية الرقمية.",
+    ids: ["e-learning"]
+  },
+  art: {
+    title: "التربية الفنية",
+    description: "قد يناسبك التصميم والفنون والإبداع البصري.",
+    ids: ["art-education"]
+  },
+  music: {
+    title: "التربية الموسيقية",
+    description: "قد يناسبك استكشاف الموسيقى والتدريب السمعي.",
+    ids: ["music-education"]
+  },
+  media: {
+    title: "الإعلام التربوي",
+    description: "قد يناسبك الإعلام والتواصل وإنتاج المحتوى.",
+    ids: ["educational-media"]
+  },
+  home: {
+    title: "الاقتصاد المنزلي",
+    description: "قد يناسبك استكشاف التغذية والنسيج وإدارة الموارد.",
+    ids: ["home-economics"]
+  }
+};
+
+function renderQuestion() {
+  if (!questionArea) return;
+
+  const question = questions[currentQuestion];
+  const progress = ((currentQuestion + 1) / questions.length) * 100;
+
+  questionCount.textContent =
+    `السؤال ${currentQuestion + 1} من ${questions.length}`;
+
+  progressPercent.textContent = `${progress}%`;
+  progressBar.style.width = `${progress}%`;
+
+  questionArea.innerHTML = `
+    <h3 class="question-title">${question.title}</h3>
+    <div class="answers">
+      ${question.answers.map((answer, index) => `
+        <label class="answer-option">
+          <input
+            type="radio"
+            name="quizAnswer"
+            value="${answer.type}"
+            ${selectedAnswers[currentQuestion] === answer.type ? "checked" : ""}
+          >
+          <span>${answer.text}</span>
+        </label>
+      `).join("")}
+    </div>
+  `;
+
+  previousQuestion.disabled = currentQuestion === 0;
+  nextQuestion.textContent =
+    currentQuestion === questions.length - 1
+      ? "اعرف النتيجة"
+      : "التالي";
+
+  quizResult.innerHTML = "";
+}
+
+function showQuizResult() {
+  const scores = {};
+
+  selectedAnswers.forEach(type => {
+    if (type) scores[type] = (scores[type] || 0) + 1;
+  });
+
+  if (selectedAnswers.some(answer => !answer)) {
+    quizResult.innerHTML = `
+      <p class="video-missing">
+        اختاري إجابة لكل سؤال قبل عرض النتيجة.
+      </p>
+    `;
+    return;
+  }
+
+  const highestScore = Math.max(...Object.values(scores));
+  const winners = Object.keys(scores).filter(
+    type => scores[type] === highestScore
+  );
+
+  quizResult.innerHTML = `
+    <div class="result-card">
+      <h3>نتيجة استرشادية لميولك ✨</h3>
+      <p>
+        ${winners.map(type => resultDepartments[type].title).join("، ")}
+      </p>
+      ${winners.map(type => `
+        <p>${resultDepartments[type].description}</p>
+        ${resultDepartments[type].ids.map(id => `
+          <button
+            type="button"
+            class="btn secondary quiz-department-link"
+            data-result-department="${id}"
+          >
+            اكتشفي القسم
+          </button>
+        `).join("")}
+      `).join("")}
+      <p>
+        النتيجة ليست حكمًا نهائيًا على قدراتك أو اختيارك الجامعي.
+        قارني بين المواد الدراسية واهتماماتك قبل اتخاذ القرار.
+      </p>
+      <button type="button" class="btn primary" id="retryQuiz">
+        إعادة الاختبار
+      </button>
+    </div>
+  `;
+
+  questionArea.innerHTML = "";
+  previousQuestion.disabled = true;
+  nextQuestion.disabled = true;
+
+  quizResult.querySelectorAll("[data-result-department]").forEach(button => {
+    button.addEventListener("click", () => {
+      const departmentId = button.dataset.resultDepartment;
+      showDepartment(departmentId);
+    });
+  });
+
+  document.getElementById("retryQuiz")?.addEventListener("click", () => {
+    currentQuestion = 0;
+    selectedAnswers = Array(questions.length).fill(null);
+    nextQuestion.disabled = false;
+    renderQuestion();
+  });
+}
+
+if (
+  questionArea &&
+  questionCount &&
+  progressPercent &&
+  progressBar &&
+  previousQuestion &&
+  nextQuestion &&
+  quizResult
+) {
+  renderQuestion();
+
+  questionArea.addEventListener("change", event => {
+    if (event.target.name === "quizAnswer") {
+      selectedAnswers[currentQuestion] = event.target.value;
+    }
+  });
+
+  previousQuestion.addEventListener("click", () => {
+    if (currentQuestion > 0) {
+      currentQuestion--;
+      renderQuestion();
+    }
+  });
+
+  nextQuestion.addEventListener("click", () => {
+    if (selectedAnswers[currentQuestion] === null) {
+      quizResult.innerHTML = `
+        <p class="video-missing">اختاري إجابة أولًا للمتابعة.</p>
+      `;
+      return;
+    }
+
+    if (currentQuestion < questions.length - 1) {
+      currentQuestion++;
+      renderQuestion();
+    } else {
+      showQuizResult();
+    }
+  });
+}
+
+
+/* 9. سنة حقوق النشر */
+
+const yearElement = document.getElementById("year");
+
+if (yearElement) {
+  yearElement.textContent = new Date().getFullYear();
+}
+
+
+/* 10. تشغيل الموقع */
+
+renderDepartments();
 

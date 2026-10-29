@@ -3,7 +3,7 @@
    الأقسام + الفيديوهات + اختبار الميول
 ========================================= */
 
-/* 1. بيانات الأقسام السبعة مع روابط التشغيل المباشر */
+/* 1. بيانات الأقسام السبعة مع روابط التضمين المباشر */
 
 const departments = [
   {
@@ -32,7 +32,7 @@ const departments = [
       "دعم فني ومساندة تقنية.",
       "مصمم وسائط متعددة ومحتوى تعليمي رقمي."
     ],
-    video: "https://www.googleapis.com/drive/v3/files/1cJV-ulAOugdFxCpl7Iv3ayJcN7YEL6EH?alt=media"
+    videoId: "1cJV-ulAOugdFxCpl7Iv3ayJcN7YEL6EH"
   },
 
   {
@@ -60,7 +60,7 @@ const departments = [
       "الدعم التقني والعمل في الشركات.",
       "العمل الحر عن بُعد وفق المهارات المطلوبة."
     ],
-    video: "https://www.googleapis.com/drive/v3/files/1zILndFALoWLL5Avo3vJ7KeCCj5g7RQ2e?alt=media"
+    videoId: "1zILndFALoWLL5Avo3vJ7KeCCj5g7RQ2e"
   },
 
   {
@@ -89,7 +89,7 @@ const departments = [
       "منتج محتوى تعليمي رقمي.",
       "دعم وإدارة منصات التعلم LMS."
     ],
-    video: "https://www.googleapis.com/drive/v3/files/1CWAAad46_57yRVnNSmDtA2zPD0ytbmjS?alt=media"
+    videoId: "1CWAAad46_57yRVnNSmDtA2zPD0ytbmjS"
   },
 
   {
@@ -118,7 +118,7 @@ const departments = [
       "تصميم الأزياء ومجالات النسيج.",
       "المشروعات الصغيرة والحرف اليدوية."
     ],
-    video: "https://www.googleapis.com/drive/v3/files/1y2FmclpFONExOJpR8zKE26BNhRXudhF3?alt=media"
+    videoId: "1y2FmclpFONExOJpR8zKE26BNhRXudhF3"
   },
 
   {
@@ -147,7 +147,7 @@ const departments = [
       "مجالات الخزف والحلي والأعمال اليدوية.",
       "مراكز الفنون والإبداع وتنظيم المعارض."
     ],
-    video: "https://www.googleapis.com/drive/v3/files/1qB-DoxJSd6hghbh1Jpk1Yw1M1nY3BCFH?alt=media"
+    videoId: "1qB-DoxJSd6hghbh1Jpk1Yw1M1nY3BCFH"
   },
 
   {
@@ -176,7 +176,7 @@ const departments = [
       "العلاقات العامة وفق المؤهلات المطلوبة.",
       "مجالات المسرح والأنشطة الثقافية."
     ],
-    video: "https://www.googleapis.com/drive/v3/files/1qt50YEjxI8yNTrlOj0McWlsXPjol10k3?alt=media"
+    videoId: "1qt50YEjxI8yNTrlOj0McWlsXPjol10k3"
   },
 
   {
@@ -205,7 +205,7 @@ const departments = [
       "العزف والأداء ضمن الفرق الموسيقية.",
       "العمل في الأنشطة والمراكز الموسيقية."
     ],
-    video: "https://www.googleapis.com/drive/v3/files/1BXpQI3_NUVazIEfVP_LkMf-vOCvqqG_c?alt=media"
+    videoId: "1BXpQI3_NUVazIEfVP_LkMf-vOCvqqG_c"
   }
 ];
 
@@ -237,7 +237,7 @@ function renderDepartments() {
 }
 
 
-/* 3. إنشاء قوائم المعلومات والفيديو لكل قسم */
+/* 3. إنشاء قوائم المعلومات وعرض الفيديو داخل الصفحة الرئيسية عبر iframe */
 
 function createList(items) {
   return `
@@ -260,19 +260,19 @@ function showDepartment(departmentId) {
 
     <div class="department-video-card">
       <h3>🎬 الفيديو التعريفي بالقسم</h3>
-      <p>شاهدي الفيديو للتعرف على القسم ومجالاته.</p>
+      <p>شاهدي الفيديو للتعرف على القسم ومجالاته مباشرة من الموقع.</p>
 
-      <video controls playsinline preload="metadata" crossorigin="anonymous">
-        <source src="${department.video}" type="video/mp4">
-        متصفحك لا يدعم تشغيل الفيديو.
-      </video>
+      <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; background: #000; margin-bottom: 15px;">
+        <iframe 
+          src="https://drive.google.com/file/d/${department.videoId}/preview" 
+          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
+          allow="autoplay" 
+          allowfullscreen>
+        </iframe>
+      </div>
 
       <p class="video-caption">
         فيديو تعريفي بقسم ${department.title}.
-      </p>
-
-      <p class="video-missing" hidden>
-        تعذر تشغيل الفيديو. تأكدي من الاتصال بالإنترنت ومن صلاحيات رابط درايف.
       </p>
     </div>
 
@@ -290,13 +290,6 @@ function showDepartment(departmentId) {
       ${createList(department.careers)}
     </div>
   `;
-
-  const video = departmentContent.querySelector("video");
-  const missingMessage = departmentContent.querySelector(".video-missing");
-
-  video.addEventListener("error", () => {
-    missingMessage.hidden = false;
-  });
 
   departmentDetails.hidden = false;
 
